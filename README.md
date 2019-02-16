@@ -23,4 +23,4 @@ It also supports:
 - Comparing
 - Encoding/decoding
 
-Please refer to [API documentation](doc/html/index.html)
+Please refer to [API documentation](https://novalexei.github.io/nURI/doc/html/index.html)
