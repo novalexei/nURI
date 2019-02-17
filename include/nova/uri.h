@@ -270,6 +270,11 @@ public:
     typedef string_view::const_iterator const_iterator;
 
     /**
+     * The URI const_reverse_iterator type.
+     */
+    typedef string_view::const_reverse_iterator const_reverse_iterator;
+
+    /**
      * Default constructor. Creates empty URI.
      */
     URI() : _uri{}, _uri_view{_uri}, _scheme{_uri}, _user_info{_uri}, _host{_uri},
@@ -329,42 +334,42 @@ public:
     /**
      * Constructs a URI by parsing the given string.
      *
-     * <p>URI string is parsed as described in URI(const string_type&)</p>
+     * <p>URI string is parsed as described in URI(string_type )</p>
      *
      * @param  uri_str The string to be parsed into a URI
      *
      * @throws  uri_syntax_error
      *          If the given string violates RFC&nbsp;2396, as augmented
      *          by the above deviations
-     * @see URI(const string_type&)
+     * @see URI(string_type )
      */
     explicit URI(string_type&& uri_str) : _uri{std::move(uri_str)} { _initialize(); }
 
     /**
      * Constructs a URI by parsing the given string.
      *
-     * <p>URI string is parsed as described in URI(const string_type&)</p>
+     * <p>URI string is parsed as described in URI(string_type )</p>
      *
      * @param  uri_str The string to be parsed into a URI
      *
      * @throws  uri_syntax_error
      *          If the given string violates RFC&nbsp;2396, as augmented
      *          by the above deviations
-     * @see URI(const string_type&)
+     * @see URI(string_type )
      */
     explicit URI(string_view uri_str) : _uri{uri_str} { _initialize(); }
 
     /**
      * Constructs a URI by parsing the given string.
      *
-     * <p>URI string is parsed as described in URI(const string_type&)</p>
+     * <p>URI string is parsed as described in URI(string_type )</p>
      *
      * @param  uri_str The string to be parsed into a URI
      *
      * @throws  uri_syntax_error
      *          If the given string violates RFC&nbsp;2396, as augmented
      *          by the above deviations
-     * @see URI(const string_type&)
+     * @see URI(string_type )
      */
     explicit URI(const char* uri_str) : _uri{uri_str} { _initialize(); }
 
@@ -372,7 +377,7 @@ public:
      * Constructs a URI by parsing the given string.
      *
      * <p>URI string is constructed from first, last iterators and the
-     * string is parsed further as described in URI(const string_type&)</p>
+     * string is parsed further as described in URI(string_type )</p>
      *
      * @tparam InputIter input iterator type from which URI string will be created
      * @param  first Begin iterator to URI string
@@ -381,7 +386,7 @@ public:
      * @throws  uri_syntax_error
      *          If the given string violates RFC&nbsp;2396, as augmented
      *          by the above deviations
-     * @see URI(const string_type&)
+     * @see URI(string_type )
      */
     template <class InputIter>
     URI(InputIter first, InputIter last) : _uri{string_type(first, last)} { _initialize(); }
@@ -456,7 +461,7 @@ public:
      * @param   path      Path
      * @param   query     Query
      *
-     * @see #URI(string_view scheme, string_view userInfo, string_view host, uint16_t port, string_view path, string_view query, string_view fragment)
+     * @see URI(string_view scheme, string_view userInfo, string_view host, uint16_t port, string_view path, string_view query, string_view fragment)
      */
     URI(string_view scheme, string_view host, uint16_t port, string_view path, string_view query) :
             URI{scheme, "", host, port, path, query, ""} {}
@@ -495,13 +500,13 @@ public:
      *
      * <p>Assigns the string representation of URI to this URI object. The
      * string is parsed following the rules to string constructor
-     * URI(const string_type&)</p>
+     * URI(string_type )</p>
      *
      * @param uri_str The string to be parsed into a URI
      * @throws  uri_syntax_error
      *          If the given string violates RFC&nbsp;2396, as augmented
      *          by the above deviations
-     * @see URI(const string_type&)
+     * @see URI(string_type )
      */
     URI &operator=(const string_type& uri_str) { _uri = uri_str; _initialize(); return *this; }
 
@@ -510,13 +515,13 @@ public:
      *
      * <p>Assigns the string representation of URI to this URI object. The
      * string is parsed following the rules to string constructor
-     * URI(const string_type&)</p>
+     * URI(string_type )</p>
      *
      * @param uri_str The string to be parsed into a URI
      * @throws  uri_syntax_error
      *          If the given string violates RFC&nbsp;2396, as augmented
      *          by the above deviations
-     * @see URI(const string_type&)
+     * @see URI(string_type )
      */
     URI &operator=(string_type&& uri_str) { _uri = std::move(uri_str); _initialize(); return *this; }
 
@@ -525,13 +530,13 @@ public:
      *
      * <p>Assigns the string representation of URI to this URI object. The
      * string is parsed following the rules to string constructor
-     * URI(const string_type&)</p>
+     * URI(string_type )</p>
      *
      * @param uri_str The string to be parsed into a URI
      * @throws  uri_syntax_error
      *          If the given string violates RFC&nbsp;2396, as augmented
      *          by the above deviations
-     * @see URI(const string_type&)
+     * @see URI(string_type )
      */
     URI &operator=(string_view uri_str) { _uri = uri_str, _initialize(); return *this; }
 
@@ -540,13 +545,13 @@ public:
      *
      * <p>Assigns the string representation of URI to this URI object. The
      * string is parsed following the rules to string constructor
-     * URI(const string_type&)</p>
+     * URI(string_type )</p>
      *
      * @param uri_str The string to be parsed into a URI
      * @throws  uri_syntax_error
      *          If the given string violates RFC&nbsp;2396, as augmented
      *          by the above deviations
-     * @see URI(const string_type&)
+     * @see URI(string_type )
      */
     URI &operator=(const char* uri_str) { _uri = uri_str; _initialize(); return *this; }
 
@@ -567,6 +572,18 @@ public:
      * @return A end iterator of underlying string view of the URI.
      */
     const_iterator end() const noexcept { return _uri_view.end(); }
+
+    /**
+     * Returns an iterator at the first element in the underlying URI view.
+     * @return A begin iterator of underlying string view of the URI.
+     */
+    const_reverse_iterator rbegin() const noexcept { return _uri_view.rbegin(); }
+
+    /**
+     * Returns an iterator at the last+1 element in the underlying URI view.
+     * @return A end iterator of underlying string view of the URI.
+     */
+    const_reverse_iterator rend() const noexcept { return _uri_view.rend(); }
 
     /**
      * Returns the scheme component of this URI.
@@ -650,7 +667,7 @@ public:
      * and considered to be undefined</p>
      *
      * <p>This method validates port, by reading uint16_t representation.
-     * No forther parsing is performed in this method.</p>
+     * No further parsing is performed in this method.</p>
      *
      * @param port New port component to this URI
      */
@@ -663,7 +680,7 @@ public:
      * component is <tt>0</tt> or negative, the current port component
      * will be deleted and considered to be undefined</p>
      *
-     * <p>No forther parsing is performed in this method.</p>
+     * <p>No further parsing is performed in this method.</p>
      *
      * @param port New port component to this URI
      */
@@ -745,7 +762,7 @@ public:
      *
      *
      * Before adding the name-value pairs to the consumer the are decodes from
-     * all the persent encoded characters.
+     * all the present encoded characters.
      *
      * The consumer here is used for genericity not to restrict type of map object
      * passed to the method. For example:
@@ -844,7 +861,7 @@ public:
     /**
      * Tells whether or not this URI is empty.
      *
-     * <p> A URI is absolute if, and only if, it has no components. </p>
+     * <p> A URI is empty if, and only if, it has no components. </p>
      *
      * @return  <tt>true</tt> if, and only if, this URI has no components defined
      */
@@ -913,7 +930,7 @@ public:
      *
      * </ol>
      *
-     * @see #normalize_path
+     * @see #normalize_path()
      */
     void normalize();
 
@@ -924,7 +941,7 @@ public:
      * the copy</p>
      *
      * @return Normalized URI instance
-     * @see #normalize
+     * @see #normalize()
      */
     URI create_normalized() const;
 
@@ -935,7 +952,7 @@ public:
      * on the copy</p>
      *
      * @return Normalized URI instance
-     * @see #normalize_path
+     * @see #normalize_path()
      */
     URI create_with_normalized_path() const;
 

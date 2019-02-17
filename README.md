@@ -8,10 +8,10 @@ The implementation is largely based on the Java URI class implementation. The im
     URI uri{"http://www.example.com/path"};
     uri.set_path("/some/new/path");
     uri.set_port(8080);
-    uri.add_to_query("name", "value");
+    uri.add_to_query("name", "の場合");
     uri.set_fragment("useful fragment");
     uri.set_scheme("https");
-    // now URI is "https://www.example.com:8080/some/new/path?name=value#useful%20fragment"
+    // Result: "https://www.example.com:8080/some/new/path?name=%E3%81%AE%E5%A0%B4%E5%90%88#useful%20fragment"
     std::cout << uri.to_ASCII_string() << std::endl;
 ```
 

@@ -1,6 +1,7 @@
 var classnova_1_1URI =
 [
     [ "const_iterator", "classnova_1_1URI.html#a72f2cb49e50a89773562ac2a66f9296c", null ],
+    [ "const_reverse_iterator", "classnova_1_1URI.html#a8594439cb02a1abb4eb576191cc1977b", null ],
     [ "string_type", "classnova_1_1URI.html#af8e762deb0ea8ea68b0108e76c494cb1", null ],
     [ "string_view", "classnova_1_1URI.html#a792d60ea36f3d72b46a47344ab39ae82", null ],
     [ "URI", "classnova_1_1URI.html#a42bf441657ab833a78faaf4d00222100", null ],
@@ -40,7 +41,9 @@ var classnova_1_1URI =
     [ "port", "classnova_1_1URI.html#ab5093506146316855256f4cfcdea211c", null ],
     [ "port_view", "classnova_1_1URI.html#a9d86235e8ee50764ba5daa2544fa39cf", null ],
     [ "query", "classnova_1_1URI.html#a0e0235385e4850d3578d5d7e4e3df8a9", null ],
+    [ "rbegin", "classnova_1_1URI.html#a5e17b6a3a68012c7daf846ab98b9da3c", null ],
     [ "relativize", "classnova_1_1URI.html#a54780606ce45472d81bb7dce32be791f", null ],
+    [ "rend", "classnova_1_1URI.html#a3d8182011bee705809ab9fa197681c69", null ],
     [ "resolve", "classnova_1_1URI.html#a0b9744b93579a53201bb207d837d558e", null ],
     [ "scheme", "classnova_1_1URI.html#ab26119628694781eefe2c75c8d161959", null ],
     [ "set_fragment", "classnova_1_1URI.html#ac06740f51dca01b34c2c4061d0234e38", null ],
